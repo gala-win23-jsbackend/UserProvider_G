@@ -26,7 +26,7 @@ var host = new HostBuilder()
         {
             options.SignIn.RequireConfirmedAccount = true;
             options.User.RequireUniqueEmail = true;
-            options.Password.RequiredLength = 8;
+            options.Password.RequiredLength = 6;
         })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<DataContext>()
@@ -37,9 +37,9 @@ var host = new HostBuilder()
         services.AddAuthorization(x =>
         {
             x.AddPolicy("SuperAdmins", policy => policy.RequireRole("SuperAdmin"));
-            x.AddPolicy("CIO", policy => policy.RequireRole("SuperAdmin", "CIO"));
-            x.AddPolicy("Admins", policy => policy.RequireRole("SuperAdmin", "CIO", "Admin"));
-            x.AddPolicy("Users", policy => policy.RequireRole("SuperAdmin", "CIO", "Admin", "User"));
+            x.AddPolicy("Managers", policy => policy.RequireRole("SuperAdmin", "Managers"));
+            x.AddPolicy("Admins", policy => policy.RequireRole("SuperAdmin", "Managers", "Admin"));
+            x.AddPolicy("Users", policy => policy.RequireRole("SuperAdmin", "Managers", "Admin", "User"));
         });
 
         services.AddHttpsRedirection(o => o.HttpsPort = 7093);
