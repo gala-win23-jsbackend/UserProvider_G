@@ -43,7 +43,7 @@ public class UpdateUserNotifications(ILogger<UpdateUserNotifications> logger, Da
                             DailyNewsletter = true,
                             EventUpdates = true,
                         };
-                        var subscribeResponse = await _httpClient.PostAsJsonAsync("https://newsletterprovider-silicon-camilla.azurewebsites.net/api/Subscribe?code=xlAYAvA90Wpgn_ZFyyYauReZ4dKASqe5ZrhsD6WPrcWeAzFuUYC8iA%3D%3D", subscribeToNewsletter);
+                        var subscribeResponse = await _httpClient.PostAsJsonAsync("https://newsletters-g.azurewebsites.net/api/Subscribe?code=5XtUE2UNlWlJoiTXPCwxeZ8I9qPy-nQUVdYUyS3VX8vDAzFu64fJhA%3D%3D", subscribeToNewsletter);
                         if (subscribeResponse.IsSuccessStatusCode)
                         {
                             return new OkObjectResult(user);
@@ -57,7 +57,7 @@ public class UpdateUserNotifications(ILogger<UpdateUserNotifications> logger, Da
                         {
                             Email = user.Email
                         };
-                        var unsubscribeResponse = await _httpClient.PostAsJsonAsync("https://newsletterprovider-silicon-camilla.azurewebsites.net/api/DeleteSubscriber?code=Plgfty5JMj22i2MqsP5lqnt2vZ6G_IqIgIQu2t3HdaOkAzFuHX7ZBg%3D%3D", subscriber);
+                        var unsubscribeResponse = await _httpClient.PostAsJsonAsync("https://newsletters-g.azurewebsites.net/api/DeleteSubscriber?code=iKzIGMAg0iqS05aGHG0DPXcOlzpeKQMSKd9XXzLk5S8XAzFuZ7QvVA%3D%3D", subscriber);
                         if (unsubscribeResponse.IsSuccessStatusCode)
                         {
                             return new OkObjectResult(user);
