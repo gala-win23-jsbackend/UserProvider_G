@@ -38,7 +38,7 @@ public class UpdateUser(ILogger<UpdateUser> logger, DataContext context)
                         user.UserAddress.AddressType = userForm.AddressType;
                         user.UserAddress.AddressLine_1 = userForm.AddressLine_1;
                         user.UserAddress.AddressLine_2 = userForm.AddressLine_2;
-                        user.UserAddress.PostalCode = userForm.PostalCode;
+                        user.UserAddress.PostCode = userForm.PostCode;
                         user.UserAddress.City = userForm.City;
                     }
                     else
@@ -48,7 +48,7 @@ public class UpdateUser(ILogger<UpdateUser> logger, DataContext context)
                             AddressType = userForm.AddressType,
                             AddressLine_1 = userForm.AddressLine_1,
                             AddressLine_2 = userForm.AddressLine_2,
-                            PostalCode = userForm.PostalCode,
+                            PostCode = userForm.PostCode,
                             City = userForm.City
                         };
                     }
