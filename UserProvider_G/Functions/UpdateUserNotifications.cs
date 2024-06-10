@@ -5,6 +5,8 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using System.Net.Http.Json;
 
+namespace UserProvider.Functions;
+
 public class UpdateUserNotifications(ILogger<UpdateUserNotifications> logger, DataContext context, HttpClient httpClient)
 {
     private readonly ILogger<UpdateUserNotifications> _logger = logger;
@@ -34,14 +36,14 @@ public class UpdateUserNotifications(ILogger<UpdateUserNotifications> logger, Da
                     {
                         SubscribeToNewsletter subscribeToNewsletter = new SubscribeToNewsletter
                         {
-                            UserEmail = user.Email,
+                            UserEmail = user.Email!,
                             PreferredEmail = user.PreferredEmail,
-                            AdvertisingUpdates = true,
-                            WeekInReview = true,
-                            Podcasts = true,
-                            StartupsWeekly = true,
-                            DailyNewsletter = true,
-                            EventUpdates = true,
+                            Circle1 = true,
+                            Circle2 = true,
+                            Circle3 = true,
+                            Circle4 = true,
+                            Circle5 = true,
+                            Circle6 = true,
                         };
                         var subscribeResponse = await _httpClient.PostAsJsonAsync("https://newsletters-g.azurewebsites.net/api/Subscribe?code=5XtUE2UNlWlJoiTXPCwxeZ8I9qPy-nQUVdYUyS3VX8vDAzFu64fJhA%3D%3D", subscribeToNewsletter);
                         if (subscribeResponse.IsSuccessStatusCode)
@@ -55,7 +57,7 @@ public class UpdateUserNotifications(ILogger<UpdateUserNotifications> logger, Da
                     {
                         var subscriber = new Subscriber
                         {
-                            Email = user.Email
+                            Email = user.Email!
                         };
                         var unsubscribeResponse = await _httpClient.PostAsJsonAsync("https://newsletters-g.azurewebsites.net/api/DeleteSubscriber?code=iKzIGMAg0iqS05aGHG0DPXcOlzpeKQMSKd9XXzLk5S8XAzFuZ7QvVA%3D%3D", subscriber);
                         if (unsubscribeResponse.IsSuccessStatusCode)
@@ -90,12 +92,12 @@ public class SubscribeToNewsletter
 {
     public string UserEmail { get; set; } = null!;
     public string PreferredEmail { get; set; } = null!;
-    public bool AdvertisingUpdates { get; set; } = false;
-    public bool WeekInReview { get; set; } = false;
-    public bool Podcasts { get; set; } = false;
-    public bool StartupsWeekly { get; set; } = false;
-    public bool DailyNewsletter { get; set; } = false;
-    public bool EventUpdates { get; set; } = false;
+    public bool Circle1 { get; set; } = false;
+    public bool Circle2 { get; set; } = false;
+    public bool Circle3 { get; set; } = false;
+    public bool Circle4 { get; set; } = false;
+    public bool Circle5 { get; set; } = false;
+    public bool Circle6 { get; set; } = false;
 }
 public class NotificationsFormModel
 {
